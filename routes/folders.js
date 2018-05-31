@@ -5,7 +5,9 @@ const knex = require('../knex');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+
+// Get all folders
+router.get('/folders', (req, res, next) => {
     knex.select('id', 'name')
         .from('folders')
         .then(results => {
@@ -15,3 +17,9 @@ router.get('/', (req, res, next) => {
             next(err);
         });
 });
+
+// router.get('folders/:id', (req, res, next) => {
+//     knex.select()
+// });
+
+module.exports = router;
