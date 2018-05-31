@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // Get all folders
-router.get('/folders', (req, res, next) => {
+router.get('/', (req, res, next) => {
     knex.select('id', 'name')
         .from('folders')
         .then(results => {
