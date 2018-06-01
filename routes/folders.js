@@ -27,7 +27,11 @@ router.get('/:id', (req, res, next) => {
         .from('folders')
         .where('id', folder_id)
         .then(result => {
-            res.json(result[0]);
+            if (result) {
+                res.json(result[0])
+            } else {
+                next();
+            }
         })
         .catch(err => {
             next(err);
