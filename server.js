@@ -5,9 +5,15 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const { PORT } = require('./config');
-
+// imports notes router
 const notesRouter = require('./routes/notes');
+
+//imports folder routes
 const foldersRouter = require('./routes/folders');
+
+//imports tag routes
+const tagsRouter = require('./router/tags.js');
+
 // Create an Express application
 const app = express();
 
@@ -26,6 +32,9 @@ app.use(express.json());
 // Mount router on "/api"
 app.use('/api/notes', notesRouter);
 app.use('/api/folders', foldersRouter);
+app.use('api/tags', tagsRouter);
+
+
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
