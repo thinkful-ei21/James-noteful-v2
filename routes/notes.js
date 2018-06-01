@@ -90,16 +90,6 @@ router.post('/', (req, res, next) => {
         return next(err);
     }
 
-    // notes.create(newItem)
-    //     .then(item => {
-    //         if (item) {
-    //             res.location(`http://${req.headers.host}/notes/${item.id}`).status(201).json(item);
-    //         }
-    //     })
-    //     .catch(err => {
-    //         next(err);
-    //     });
-
     knex('notes')
         .insert(newItem)
         .returning(['id', 'title', 'content'])
