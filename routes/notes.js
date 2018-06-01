@@ -58,24 +58,14 @@ router.get('/:id', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     const id = req.params.id;
 
-    /***** Never trust users - validate input *****/
-    const updateObj = {};
-    const updateableFields = ['title', 'content'];
-
-    updateableFields.forEach(field => {
-        if (field in req.body) {
-            updateObj[field] = req.body[field];
-        }
-    });
-
-    /***** Never trust users - validate input *****/
-    if (!updateObj.title) {
-        const err = new Error('Missing `title` in request body');
-        err.status = 400;
-        return next(err);
-    }
+    const updateObj = {
+        title: req.body.title,
+        content: req.body.content,
+        folder_id: req.body.folderId
+    };
+    
     let noteId;
-
+    
     knex
         .from('notes')
         .where('notes.id', id)

@@ -28,7 +28,7 @@ router.get('/:id', (req, res, next) => {
         .where('id', folder_id)
         .then(result => {
             if (result) {
-                res.json(result[0])
+                res.json(result[0]);
             } else {
                 next();
             }
@@ -43,9 +43,9 @@ router.put('/:id', (req, res, next) => {
     const folder_id = req.params.id;
 
     const updateObj = {};
-    const updatableFields = ['name'];
+    const updateableFields = ['name'];
 
-    updatableFields.forEach(field => {
+    updateableFields.forEach(field => {
         if (field in req.body) {
             updateObj[field] = req.body[field];
         }
